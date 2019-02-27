@@ -4,6 +4,16 @@
 # where $function is either comment or uncomment,
 # and $filename the path to the test file.
 
+if [ -z "$1" ]
+	then echo "Function not supplied, tell either comment or uncomment"
+	exit
+fi
+
+if [ -z "$2" ]
+	then echo "Filename not supplied"
+	exit
+fi
+
 COMMENTTYPE1='\/\/'
 COMMENTTYPE2='\#'
 
