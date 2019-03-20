@@ -20,7 +20,7 @@ COMMENTTYPE_HASH='\#'
 #Feel free to add more comment type if necessary.
 
 C_TEST_IGNORE='TEST_IGNORE'
-PYTHON_TEST_IGNORE='unittest.skip\(.*\)
+PYTHON_TEST_IGNORE='unittest.skip\(.*\)'
 
 #Above is the list of function calls to ignore a test, in c, it is TEST_IGNORE().
 
