@@ -14,20 +14,23 @@ if [ -z "$2" ]
 	exit
 fi
 
-COMMENTTYPE1='\/\/'
-COMMENTTYPE2='\#'
+COMMENTTYPE_DOUBLE_SLASH='\/\/'
+COMMENTTYPE_HASH='\#'
 
 #Feel free to add more comment type if necessary.
 
 C_TEST_IGNORE='TEST_IGNORE'
+PYTHON_TEST_IGNORE='unittest.skip\(.*\)
 
 #Above is the list of function calls to ignore a test, in c, it is TEST_IGNORE().
 
 function comment() {
 	case $1 in
 		*.c)
-			sed -i "/$C_TEST_IGNORE/s/^/$COMMENTTYPE1/g" $1 ;;
+			sed -i "/$C_TEST_IGNORE/s/^/$COMMENTTYPE_DOUBLE_SLASH/g" $1 ;;
 		#add between the hashtags your file format, and copy-paste the above sed command with the appropriated comment type.
+		*.py)
+			sed -i "/$PYTHON_TEST_IGNORE/s/^/$COMMENTTYPE_HASH/g" $1 ;;
 		#
 		*)
 			echo "not a valid file" >> /dev/stderr;;
@@ -37,8 +40,10 @@ function comment() {
 function uncomment() {
 	case $1 in
 		*.c)
-			sed -i "/$C_TEST_IGNORE/s/^$COMMENTTYPE1*//g" $1;;
+			sed -i "/$C_TEST_IGNORE/s/^$COMMENTTYPE_DOUBLE_SLASH*//g" $1;;
 		#add between the hashtags your file format, and copy-paste the above sed command with the appropriated comment type.
+		*.py)
+			sed -i "/$PYTHON_TEST_IGNORE/s/^$COMMENTTYPE_HASH*//g" $1;;
 		#
 		*)
 			echo "not a valid file" >> /dev/stderr;;
